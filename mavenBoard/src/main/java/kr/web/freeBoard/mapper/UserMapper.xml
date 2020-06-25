@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.web.freeBoard.mapper.UserMapper">
+	<select id="getCount" resultType="int" parameterType="HashMap">
+		SELECT COUNT(*) 
+		  FROM FREEBOARD
+		 WHERE 1 = 1
+		<if test="searchType == 'dcode001' ">
+		   AND TITLE LIKE '%' || #{searchWord} || '%'
+		</if>
+		<if test = "searchType == 'dcode002'">
+		   AND NUM = #{searchWord}
+		</if> 
+		<if test = "firstDate != null and firstDate != ''">
+   			AND TO_CHAR(REGDATE, 'YYYYMMDD') BETWEEN #{firstDate} AND #{secondDate}
+		</if>
+		
+	</select>
+	
+	<select id="userGetList" resultType="HashMap"> <!-- resultType="kr.web.board.dto.BoardDto" -->
+		SELECT
+			USER_NUMBER
+		,   NAME
+		,   TO_CHAR(JOIN_DATE,'YYYY-MM-DD') JOIN_DATE
+		,   SEX
+		,   AGE
+		,   TO_CHAR(ATTENDING_DAY,'YYYY-MM-DD') ATTENDING_DAY
+		,   DUESYN
+		,   ATTENDING_COUNT
+		,   ATTENDANCE_RATE
+		FROM
+			DDRD_USER
+        WHERE 1=1
+        
+        AND NAME LIKE '%' || #{searchWord} || '%'
+				
+	</select>
+	
+	
+	<insert id="userInsert" parameterType="HashMap">
+		INSERT 
+			INTO 
+			DDRD_USER(
+			USER_NUMBER
+		,	NAME
+		,	AGE
+		,	SEX
+		,	JOIN_DATE
+		,	ATTENDING_DAY
+		,	ATTENDING_COUNT
+		,	ATTENDANCE_RATE
+			)
+		VALUES(
+			USER_NUMBER.NEXTVAL
+			<foreach collection="list" item="item">
+		,	#{item.NAME}
+		,	#{item.AGE}
+		,	#{item.SEX}
+		,	#{item.JOIN_DATE}
+		,	#{item.JOIN_DATE}
+		,	0
+		,	0
+		)
+		</foreach>
+	</insert>
+	
+	<delete id="userDelete" parameterType="HashMap">
+		DELETE
+		FROM     
+		DDRD_USER
+		WHERE
+            USER_NUMBER in
+            <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item.USER_NUMBER}
+            </foreach>
+	</delete>
+	
+	<update id="userUpdate" parameterType="HashMap">
+		<foreach collection="list" item="item" separator=" ; " open="DECLARE BEGIN" close="; END;">
+	UPDATE	 
+		DDRD_USER
+		SET
+		NAME = #{item.NAME}
+	,	SEX = #{item.SEX}
+	,	AGE = #{item.AGE}
+	,	JOIN_DATE = #{item.JOIN_DATE}
+		WHERE
+			USER_NUMBER = #{item.USER_NUMBER}
+		</foreach>
+	</update>
+	<select id="freeBoardDetailByNum" resultType="freeBoardDto" parameterType="int">
+		SELECT NUM, TITLE, NAME, TO_CHAR(REGDATE,'YYYY/MM/DD') REGDATE, CONTENT 
+			FROM FREEBOARD
+		WHERE NUM=#{num}
+	</select>
+	
+	<select id="freeBoardNewNum" resultType="int">
+		SELECT MAX(NUM)
+		FROM FREEBOARD
+	</select>
+	
+	
+	
+	
+	<select id="freeBoardfunction" statementType="CALLABLE" parameterType="hashmap"  resultType="hashmap">
+ {call PROCEDURE1(        
+          #{num},
+          #{title},
+          #{name},
+          #{content},
+          #{result, mode=OUT, jdbcType=NUMERIC}
+       )
+} 
+</select>     	
+</mapper>
