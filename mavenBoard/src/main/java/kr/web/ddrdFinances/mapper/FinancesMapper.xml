@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.web.ddrdFinances.mapper">
+	
+	<select id="selectFinancesMain" resultType="HashMap" parameterType="HashMap">
+		SELECT 	
+			TOTAL_BUDGET
+		FROM 
+			DDRD_FINANCES
+		WHERE 
+			FINANCES_NUMBER = (SELECT max(FINANCES_NUMBER) FROM DDRD_FINANCES)
+		
+	</select>
+</mapper>

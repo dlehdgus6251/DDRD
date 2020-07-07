@@ -1,4 +1,4 @@
-package kr.web.freeBoard.service;
+package kr.web.ddrdUser.service;
 
 import java.util.HashMap;
 import java.util.List;

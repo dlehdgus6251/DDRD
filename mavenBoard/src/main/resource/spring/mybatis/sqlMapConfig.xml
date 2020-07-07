@@ -39,7 +39,7 @@
 	<!-- </typeAliases> -->
 
 	<typeAliases>
-		<package name="kr.web.freeBoard.dto" />
+		<package name="kr.web.ddrdUser.dto" />
 	</typeAliases>
 	
 <!-- 이미 sqlsessionfactorybean 만들떄 넣었는데 왜 있는가 -->

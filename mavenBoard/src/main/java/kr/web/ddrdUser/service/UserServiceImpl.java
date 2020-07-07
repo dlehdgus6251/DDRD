@@ -1,4 +1,4 @@
-package kr.web.freeBoard.service;
+package kr.web.ddrdUser.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.web.freeBoard.mapper.UserDao;
+import kr.web.ddrdUser.mapper.UserDao;
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired

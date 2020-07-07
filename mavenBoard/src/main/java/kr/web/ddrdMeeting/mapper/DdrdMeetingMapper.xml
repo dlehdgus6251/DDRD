@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.web.ddrdMeeting.mapper">
+	
+	<select id="selectDdrdMeeting" resultType="HashMap" parameterType="HashMap">
+		SELECT 	
+			MEETING_NUMBER
+		,	MEETING_NAME
+		,	TO_CHAR(MEETING_DATE, 'YYYY-MM-DD') MEETING_DATE
+		,	MEETING_AD
+		,	TOTAL_USER
+			FROM 
+				DDRD_MEETING 
+	</select>
+	<select id="selectDdrdUserList">
+		 SELECT 
+		 	USER_NUMBER
+		 ,	NAME 
+		 FROM 
+		 	DDRD_USER 
+	</select>
+	<insert id="insertDdrdMeeting" parameterType="HashMap">
+	INSERT 
+		INTO 
+		DDRD_MEETING (
+		MEETING_NUMBER
+	,	MEETING_NAME
+	,	MEETING_DATE
+	,	MEETING_AD
+	,	TOTAL_USER
+		)
+	VALUES (
+	<foreach collection="list" item="item">
+		DDRD_MEETING_NUMBER.NEXTVAL		
+	,	#{item.MEETING_NAME}
+	,	#{item.MEETING_DATE}
+	,	#{item.MEETING_AD}
+	,	0
+	</foreach> 
+	)
+	</insert>
+	
+	<insert id="insertAttend">
+	INSERT INTO MEETING_DETAIL(
+  		MEETING_NUMBER
+ 	,	MEETING_NAME
+ 	,	MEETING_DATE
+	,	USER_NUMBER
+	,	NAME
+	,	DEPOSIT
+	)
+ 	VALUES(
+    	#{MEETING_NUMBER}
+    ,	#{MEETING_NAME}
+    ,	#{MEETING_DATE}
+    ,	#{USER_NUMBER}
+    ,	#{NAME}
+    ,	'미입금'
+ 	)
+	</insert>
+	
+	<delete id="deleteAttend">
+	DELETE 
+	FROM 
+		MEETING_DETAIL
+	WHERE 
+		MEETING_NUMBER = #{MEETING_NUMBER}
+	AND
+		USER_NUMBER = #{USER_NUMBER}
+		
+	</delete>
+	<delete id="deleteAttendAll">
+	DELETE 
+	FROM 
+		MEETING_DETAIL
+	WHERE 
+		MEETING_NUMBER = #{MEETING_NUMBER}
+	</delete>
+	<delete id="deleteMeeting">
+	DELETE 
+	FROM 
+		DDRD_MEETING
+	WHERE 
+		MEETING_NUMBER = #{MEETING_NUMBER}
+	</delete>
+	<update id="updateAttend">
+	UPDATE
+		MEETING_DETAIL
+	SET 
+		DEPOSIT = #{DEPOSIT}
+	WHERE
+		MEETING_NUMBER = #{MEETING_NUMBER}
+	AND
+		USER_NUMBER = #{USER_NUMBER}
+	</update>
+	<update id="updateTotalUser">
+	UPDATE
+		DDRD_MEETING
+	SET 
+		TOTAL_USER = #{TOTAL_USER}
+	WHERE
+		MEETING_NUMBER = #{MEETING_NUMBER}
+	
+	</update>
+	<select id="selectAttend" resultType="HashMap" parameterType="HashMap">
+		SELECT 
+			*
+		FROM
+			MEETING_DETAIL
+		WHERE
+			MEETING_NUMBER = #{MEETING_NUMBER }
+		
+	</select>
+	
+	<select id="selectAttendUserNum" resultType="HashMap" parameterType="HashMap">
+		SELECT 
+			USER_NUMBER
+		FROM
+			MEETING_DETAIL
+		WHERE
+			MEETING_NUMBER = #{MEETING_NUMBER }
+		
+	</select>	
+</mapper>

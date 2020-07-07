@@ -16,35 +16,24 @@
         <put-attribute name="header" value="/WEB-INF/view/template/defaultHeader.jsp" />
         <put-attribute name="menu" value="/WEB-INF/view/template/defaultMenu.jsp" />
         <put-attribute name="footer" value="/WEB-INF/view/template/defaultFooter.jsp" />
-        <put-attribute name="content" value="/WEB-INF/view/freeBoard/ddrdUserMain.jsp" />
+        <put-attribute name="content" value="/WEB-INF/view/ddrdUser/ddrdUserMain.jsp" />
     </definition>
-    <definition name="freeBoardInsert" extends="mainTemplate">
+   
+    <definition name="financesMain" extends="mainTemplate">
         <put-attribute name="header" value="/WEB-INF/view/template/defaultHeader.jsp" />
         <put-attribute name="menu" value="/WEB-INF/view/template/defaultMenu.jsp" />
         <put-attribute name="footer" value="/WEB-INF/view/template/defaultFooter.jsp" />
-        <put-attribute name="content" value="/WEB-INF/view/freeBoard/freeBoardInsert.jsp" />
-    </definition>
-    <definition name="freeBoardDetail" extends="mainTemplate">
-        <put-attribute name="header" value="/WEB-INF/view/template/defaultHeader.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/view/template/defaultMenu.jsp" />
-        <put-attribute name="footer" value="/WEB-INF/view/template/defaultFooter.jsp" />
-        <put-attribute name="content" value="/WEB-INF/view/freeBoard/freeBoardDetail.jsp" />
-    </definition>
-    <definition name="commonCodeMain" extends="mainTemplate">
-        <put-attribute name="header" value="/WEB-INF/view/template/defaultHeader.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/view/template/defaultMenu2.jsp" />
-        <put-attribute name="footer" value="/WEB-INF/view/template/defaultFooter.jsp" />
-        <put-attribute name="content" value="/WEB-INF/view/commonCode/commonCodeMain.jsp" />
+        <put-attribute name="content" value="/WEB-INF/view/ddrdFinances/ddrdFinancesMain.jsp" />
     </definition>
     <definition name="sell1" extends="mainTemplate">
         <put-attribute name="header" value="/WEB-INF/view/template/defaultHeader.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/view/template/defaultMenu2-1.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/view/template/defaultMenu.jsp" />
         <put-attribute name="footer" value="/WEB-INF/view/template/defaultFooter.jsp" />
         <put-attribute name="content" value="/WEB-INF/view/zz/sell1.jsp" />
     </definition>
     <definition name="sell2" extends="mainTemplate">
         <put-attribute name="header" value="/WEB-INF/view/template/defaultHeader.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/view/template/defaultMenu2-2.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/view/template/defaultMenu.jsp" />
         <put-attribute name="footer" value="/WEB-INF/view/template/defaultFooter.jsp" />
         <put-attribute name="content" value="/WEB-INF/view/zz/sell2.jsp" />
     </definition>
@@ -54,15 +43,16 @@
         <put-attribute name="footer" value="/WEB-INF/view/template/defaultFooter.jsp" />
         <put-attribute name="content" value="/WEB-INF/view/commonCode/commonCodeInsert.jsp" />
     </definition>
-    <definition name="masterControllerMain" extends="mainTemplate">
+    <definition name="ddrdMeetingMain" extends="mainTemplate">
         <put-attribute name="header" value="/WEB-INF/view/template/defaultHeader.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/view/template/defaultMenu2.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/view/template/defaultMenu.jsp" />
         <put-attribute name="footer" value="/WEB-INF/view/template/defaultFooter.jsp" />
-        <put-attribute name="content" value="/WEB-INF/view/masterController/masterControllerMain.jsp" />
+        <put-attribute name="content" value="/WEB-INF/view/ddrdMeeting/ddrdMeeting.jsp" />
     </definition>
     <definition name="mainTemplate2" template="/WEB-INF/view/template/defaultMain2.jsp"/>
-    <definition name="commonCodeDetail" extends="mainTemplate2">
-        <put-attribute name="body" value="/WEB-INF/view/commonCode/commonCodeDetail.jsp" />
+    
+    <definition name="ddrdMeetingDetail" extends="mainTemplate2">
+        <put-attribute name="body" value="/WEB-INF/view/ddrdMeeting/ddrdMeetingDetail.jsp" />
     </definition>
     <definition name="defaultMenu" extends="mainTemplate">
         <put-attribute name="header" value="/WEB-INF/view/template/defaultHeader.jsp" />

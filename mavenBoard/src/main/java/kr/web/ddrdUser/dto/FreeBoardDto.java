@@ -1,4 +1,4 @@
-package kr.web.freeBoard.dto;
+package kr.web.ddrdUser.dto;
 
 import org.apache.ibatis.type.Alias;
 

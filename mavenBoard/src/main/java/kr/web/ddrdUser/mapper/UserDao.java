@@ -1,4 +1,4 @@
-package kr.web.freeBoard.mapper;
+package kr.web.ddrdUser.mapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.web.freeBoard.dto.FreeBoardDto;
+import kr.web.ddrdUser.dto.FreeBoardDto;
 @Repository
 public class UserDao {
 	@Autowired
